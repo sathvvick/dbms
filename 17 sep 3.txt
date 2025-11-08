@@ -1,0 +1,117 @@
+select s.sname from sailors s, reserves r, boats b
+where  s.sid=r.sid and b.bid=r.bid and b.bcolor='Red'
+union
+select s1.sname from sailors s1, reserves r1, boats b1
+where  s1.sid=r1.sid and r1.bid=b1.bid and b1.bcolor='blue';
+
+
+
+
+select s.sname from sailors s, reserves r, boats b
+where  s.sid=r.sid and b.bid=r.bid and b.bcolor='Red'
+intersect
+select s1.sname from sailors s1, reserves r1, boats b1
+where  s1.sid=r1.sid and r1.bid=b1.bid and b1.bcolor='green';
+
+
+
+
+select s.sname from sailors s, reserves r, boats b
+where  s.sid=r.sid and b.bid=r.bid and b.bcolor='Red'
+minus
+select s1.sname from sailors s1, reserves r1, boats b1
+where  s1.sid=r1.sid and r1.bid=b1.bid and b1.bcolor='green';
+
+
+
+select s.sid from sailors s
+where s.rating>any(select s1.rating from sailors s1
+where s.sname ='Aditya');
+
+select s.sname from sailors s
+where s.sid not in(select r.sid from reserves r
+where r.bid in(select b.bid from boats b
+where b.bcolor='Red'));
+
+# Find names of sailors who have reserved boat no=103
+select s.sname from sailors s,reserves r
+where s.sid=r.sid and r.bid=103;
+
+select s.sname from sailors s
+where exists(select * from reserves r where s.sid=r.sid and r.bid =103);
+
+# Find names of sailors who have not reserved boat no=103
+
+select s.sname from sailors s
+where not exists(select * from reserves r where s.sid=r.sid and r.bid =103);
+
+
+##@$
+1.Find the name and age of youngest sailor
+
+select s.sname,s.age from sailors s
+where  s.age<=all(select s1.age from sailors s1);
+
+select sname,age from sailors
+where age in (select min(age) from sailors);
+
+select sname,age from sailors
+where age = (select min(age) from sailors);
+
+2.Find the sids who have rating of 10 or reserved boat 104
+
+
+select s.sid from sailors s
+where s.rating = 10
+UNION
+select r.sid from reserves r
+where r.bid = 103;
+
+
+select sid from sailors 
+where rating=10
+or
+sid in (select sid from reserves where bid = 104);
+
+select s.sid from sailors s
+where s.rating = 10
+or Exists (select * from reserves r
+where r.sid = s.sid
+  and r.bid = 104);
+
+
+3.Find sailors who have not reserved any boat.
+
+select * from sailors s
+where s.sid not in (select r.sid from reserves r);
+
+select * from sailors s
+where not exists(select * from reserves r where r.sid=s.sid);
+
+
+
+4.Find sailors who are older than every sailor with a rating of 10.
+
+select * from sailors
+where age > ALL (select age from sailors where rating = 10);
+
+select * from sailors
+where age > (select max(age) from sailors where rating = 10);
+
+5.Find the names of sailors who have reserved a red boat or green boat
+(without using union)
+
+SELECT s.name FROM Sailors s, Reserves r,Boats b where s.sid = r.sid and 
+r.bid = b.bid and b.bcolor IN ('Red', 'Green')
+
+select s.sname from sailors s,reserves r,boats b
+where s.sid=r.sid and r.bid=b.bid and b.bcolor='Red'
+union all
+select s1.sname from sailors s1, reserves r1,boats b1
+where s1.sid=r1.sid and r1.bid=b1.bid and b1.bcolor='Green'
+
+select s.sname from sailors s,reserves r,boats b
+where s.sid = r.sid and r.bid = b.bid and (b.bcolor = 'Red' or b.bcolor = 'Green');
+
+
+

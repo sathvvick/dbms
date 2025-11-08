@@ -1,0 +1,100 @@
+create table Stds
+(
+StudentID integer primary key,
+StudentName varchar2(30),
+Major varchar2(30)
+);
+
+insert into Stds values(1, 'Alice Smith', 'Computer Science');
+insert into Stds values(2, 'Bob Johnson', 'Mathematics');
+insert into Stds values(3, 'Charlie Brown', 'Physics');
+
+
+
+create table Courses
+(
+CoursesID integer primary key,
+CourseName varchar2(30),
+Credits integer
+);
+
+insert into Courses values(101, 'Introduction to Programming', 3);
+insert into Courses values(102, 'Calculus I', 4);
+insert into Courses values(103, 'Classical Mechanics', 3);
+
+
+
+
+create table Enrollments
+(
+StudentID integer,
+CoursesID integer,
+EnrollmentDate Date,
+primary key(StudentID,CoursesID),
+foreign key(StudentID) references Stds(StudentID),
+foreign key(CoursesID) references  Courses(CoursesID)
+);
+
+insert into Enrollments values(1, 101, '01-sep-24');
+insert into Enrollments values(1, 102, '01-sep-24');
+insert into Enrollments values(2, 102, '01-sep-24');
+insert into Enrollments values(3, 103, '01-sep-24');
+
+
+create table Instructors
+(
+InstructorID integer primary key,
+Instructorname varchar2(30),
+phone integer
+);
+
+insert into Instructors values(1001, 'Dr. Emily White', 7225148456);
+insert into Instructors values(1002, 'Prof. David Green', 9822663346);
+
+
+
+
+create table Courses_Instructors
+(
+CoursesID integer,
+InstructorID integer,
+primary key(CoursesID,InstructorID),
+foreign key(CoursesID) references Courses(CoursesID),
+foreign key(InstructorID) references  Instructors(InstructorID)
+);
+
+insert into Courses_Instructors values(101, 1001);
+insert into Courses_Instructors values(102, 1002);
+insert into Courses_Instructors values(103, 1002);
+
+-----------------------------------------------------------
+
+1) Retrieve all students and their majors
+      select StudentName, Major
+      from Stds;
+
+2) List all Courses along with the number of credits
+      select Coursename,Credits
+      from Courses;
+
+3) Find all students Enrolled in a specific course (e.g., 'Introduction to programming')
+4) Get the list of instructors teaching a specific course (e.g., 'Introduction to programming')
+5) Count the number of students enrolled in each course
+
+	SELECT I.instructorName, COUNT(CI.CoursesID) AS CoursesCount
+	FROM Instructors I
+	JOIN Courses_Instructors CI ON I.InstructorID = CI.InstructorID
+	GROUP BY I.instructorName;
+
+6) List courses along with their instructor names
+7) Get the number of courses taught by each instructor
+8) Find students enrolled after a certain date (e.g., '2024-01-01')
+9) Show each student with the total number of credits they are taking
+
+SELECT s.StudentName, SUM(c.Credits) AS TotalCredits
+FROM Students s
+JOIN Enrollments e ON s.StudentId = e.StudentId
+JOIN Courses c ON e.CourseId = c.CourseId
+GROUP BY s.StudentName;
+
+10) Show Courses that have more than 3 credits.

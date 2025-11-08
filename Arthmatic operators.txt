@@ -1,0 +1,73 @@
+Arthmatic operators:
+
+select 3+2 from dual;
+select 3+2 as addition from dual;
+
+select 3-2 from dual;
+select 3-2 as subtraction from dual;
+
+select 3*2 from dual;
+select 3*2 as multiplication from dual;
+
+select 3/2 as division from dual;
+
+select 3%2 as division from dual;
+
+select mod(3,2) as modulus from dual;
+
+
+select * from siva
+
+ROLLNO	SNAME	INTERNAL_MARKS	EXTERNAL_MARKS
+501	ravi	30	             40
+502	suma	32	             45
+503	rani	35	             50
+504	usha	40	             55
+505	usha	50	             60
+
+select distinct name from siva;
+
+select sname from siva;
+
+select rollno, sname, internal_marks, external_marks, internal_marks+external_marks as total from siva;
+
+................................................................
+logical operators
+
+Select rollno from siva where sname='rani' and internal_marks=35;
+
+Select rollno from siva where sname='rani' and internal_marks=40;
+
+Select rollno from siva where sname='rani' or internal_marks=35;
+
+Select rollno from siva where sname='rani' or internal_marks=40;
+
+select * from siva where not internal_marks=40;
+...............................................................
+
+Comparision operators
+
+select rollno,sname from siva where internal_marks<35;
+
+select rollno,sname from siva where external_marks>40;
+
+select rollno,sname from siva where internal_marks<>32;
+
+select * from siva where internal_marks between 30 and 35;
+
+..............................................................
+
+select sname from sailors s
+where s.rating >= 8 AND s.age >= 30;
+
+select bname from boats
+where color='red' OR color='green';
+
+Find sailors snames whose rating is not 7;
+
+select sname from sailors where not rating='7';
+
+find sailor snames with rating between 3 and 7;
+
+select sname from sailors
+where rating between 3 and 7;

@@ -1,0 +1,84 @@
+create table suppliers
+(
+sid integer,
+sname varchar2(20) not null,
+address varchar2(30),
+primary key(sid)
+);
+
+create table parts
+(
+pid integer,
+pname varchar2(20) not null,
+color varchar2(30),
+primary key(pid)
+);
+
+create table catalogs
+(
+sid integer,
+pid integer,
+cost number(7,2),
+primary key(sid,pid),
+foreign key(sid) references suppliers(sid),
+foreign key(pid) references parts(pid));
+
+......................................................
+
+create table department
+(
+Deptno integer,
+Dname varchar2(20) not null,
+HOD_Empid integer,
+primary key(Deptno)
+);
+
+
+create table employee
+(
+Empid integer,
+Fname varchar2(20) not null,
+Lname varchar2(20) not null,
+Address varchar2(40),
+Sex varchar2(50) default 'M',
+salary integer, check(salary <= 200000),
+Deptno integer,
+primary key(Empid),
+foreign key(Deptno) references department(Deptno)
+);
+
+create table projectdata
+(
+projno integer,
+pname varchar2(20) not null,
+Deptno integer,
+primary key(projno),
+foreign key(Deptno) references department(Deptno)
+);
+
+create table worksondata
+(
+Empid integer,
+projno integer,
+hours integer,
+primary key(Empid,projno),
+foreign key(Empid) references employee(Empid),
+foreign key(projno) references projectdata(projno)
+);
+
+
+
+select * from class
+where city like '%ai%';
+
+select * from class
+where city like '%r';
+
+select * from class
+where city like 'm%';
+
+select * from class
+where city like '__e%';  
+
+select * from class
+where city like 'c%i';

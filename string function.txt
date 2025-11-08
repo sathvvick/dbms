@@ -1,0 +1,85 @@
+string function:
+ 
+select concat('oracle','database') from dual;
+select concat('oracle',concat('RDBMS','Software')) from dual;
+select 'oracle' || 'database' from dual;
+select length ('oracle') from dual;
+ 
+select upper ('oracle') from dual;
+select lower ('ORACLE') from dual;
+
+select initcap('oracle database') from dual;
+
+select ascii('A') from dual;
+select chr(65) from dual;
+select lpad ('oracle',8,'*') from dual;
+select rpad ('oracle',8,'*') from dual;
+
+select ltrim ('aabbcc','a') from dual;
+select rtrim ('aabbcc','c') as righttrim from dual;
+
+select substr('abcdefg',5,2) from dual;
+select substr('abcdefg',-5,3) from dual;
+select reverse('oracle') from dual;
+select instr ('abcdefgh','d') from dual;
+
+select instr ('abab','b',2) from dual;
+select replace ('jack and joe','j','b') from dual;
+
+
+create table st2
+(
+rollno integer,
+name varchar2(20),
+branch varchar2(30)
+);
+
+insert into st2 values(501,'ravi','computer science')
+select upper(name),initcap(branch) from st2;
+
+................................................
+Numerical functions:
+
+select abs(19) from dual;
+select abs(-15) from dual;
+select sign(26) from dual;
+select sign(-26) from dual;
+select power(5,3) from dual;
+select sqrt(625) from dual;
+select ceil(-3.3) from dual;
+select ceil(3.3) from dual;
+select floor(6.6) from dual;
+select floor(-6.6) from dual;
+
+select exp(4) from dual;
+select round(77.7777,2) from dual;
+select trunc(77.7777,2) from dual;
+selecct mod(200,3) from dual;
+.......................................................
+
+Date function:
+
+select sysdate from dual;
+select extract (day from sysdate) from dual;
+select extract (month from sysdate) from dual;
+select extract (year from sysdate) from dual;
+
+select sysdate+1 from dual;
+select sysdate-1 from dual;
+
+select add_months (sysdate,1) from dual;
+select add_months (sysdate,2) from dual;
+
+select last_day (sysdate) from dual;
+select last_day ('05-Feb-25') from dual;
+
+select next_day ('15-Aug-25','Friday') from dual;
+
+select next_day ('31-Jul-25','Thursday') from dual;
+
+select to_char(sysdate,'YYYY/MM/DD hh:mm:ss') from dual;
+
+select to_date('15-11-2018','DD-MM-YYYY') from dual;
+
+select months_between(to_date('20-05-2024','dd-mm-yyyy'),to_date('05-05-2025','dd-mm-yyyy')) from dual;
+

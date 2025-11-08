@@ -1,0 +1,67 @@
+4.Creating and querying views and materialized views.
+
+syntax:
+create or replace force/noforce view viewname as 
+select column_list from table_list
+where condition with read only|check option
+Dropping a view syntax:
+Drop view viewname;
+
+
+create table views
+(
+rollno integer,
+name varchar2(20),
+marks integer
+);
+
+create view myview as select rollno,name from views;
+desc myview;
+
+select * from tab;
+
+insert into myview values(503,'prathisha');
+
+select * from myview;
+
+
+select * from views;
+
+insert into views values(507,'kamesh',50);
+
+select * from myview;
+
+select * from views
+
+
+delete from myview where rollno=503;
+ 
+select * from myview;
+
+select * from views
+
+--> Create or Replace view myview as select * from views;
+
+desc myview;
+
+--> create or replace force view abc as select * from dummy_table;
+
+create view myview1 as select * from views with read only;
+
+insert into myview1 values(503,'prathisha',80);
+warning:virtual column not allowed here;
+
+update myview1
+set name='suma'
+where rollno=505;
+
+select * from myview1;
+
+--> Create view myview2 as select * from views where marks<101 with check option;
+
+insert into myview2 values(504,'siri',101);
+warning: view WITH CHECK OPTION where-clause violation
+
+insert into myview2 values(508,'geetha',80);
+
+select * from myview2;

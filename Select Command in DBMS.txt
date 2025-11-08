@@ -1,0 +1,91 @@
+Select Command
+ 
+
+
+create table company(
+company varchar2(20),
+amount integer
+);
+
+select* from company;
+insert values.
+
+
+find the sum of amount of each company.
+select companyn,sum(amount) from company;  (invalid because both cannot be executed simultaneously but correct is illustrated below)
+
+syntax:
+   select [distinct] column1,column2 as newname from table1,table2
+where condition
+group by columnname
+having condition
+order by columnname asc|desc
+EX:- To retrieve all rows in students
+select * from students;
+To display 
+----------------------------------------------------
+(valid)
+select company,sum(amount) from company group by company;
+
+select company,
+count(*) from company group by company;
+
+select company,
+min(amount) from company group by company;
+
+select company,
+max(amount) from company group by company;
+
+select company,
+count(*) from company group by company having count(*)>1;
+
+select company,
+sum(amount) from company group by company having sum(amount)>10000;
+
+select company,
+max(amount) from company where company= 'wipro'
+group by company;
+
+select company,
+min(amount) from company where company= 'dell'
+group by company;
+
+..................................................................................
+create table stu14
+(
+rollno integer,
+name varchar2(20),
+marks integer
+);
+
+alter table stu14
+add dob date;
+
+insert into stu14 values(504,'kamala',65,'08 january 2025');
+
+........................................................................................
+
+employee :
+(Empid:integer,SSN:integer,name:string,address:string,mobileno:integer,deptid:integer)
+super key:
+{Empid,name}
+{SSN,name}
+{Empid,name,address}
+{SSN,name,address}
+{Empid,name,mobileno}
+{SSN,name,moblileno}
+
+candidate keys:
+Empid
+SSN
+Primary key
+Empid
+Alternate key
+SSN
+Foreign key-deptid
+
+MOVIES (Mov_id, Mov_Tittle, Mov_Year, Dir_id)
+super key:
+{Mov_id
+Primary key : Mov_id
+Foreign key : Dir_id

@@ -1,0 +1,189 @@
+DDL Commands
+Create
+syntax
+Create table tablename(A1 D1, A2 D2,…..AnDn,
+				Integrity constraint1,
+				.
+				.
+				Integrity constraintn)
+students8(sid:integer,sname:string,age:integer)
+
+create table students8
+(
+sid integer,
+sname varchar2(30),
+age integer
+);
+
+describe students8
+
+desc students8
+
+students(sid:integer,sname:string,age:integer,phno:integer)
+
+syntax
+alter table tablename
+add columnname datatype
+
+alter table students8
+add phno integer;
+
+desc students8
+
+syntax
+alter table tablename
+drop column columnname
+
+students8(sid:integer,sname:string,phno:integer)
+alter table students8
+drop column age;
+
+desc students8
+
+
+syntax
+alter table tablename
+modify columnname datatype
+students8(sid:string,sname:string,phno:integer)
+
+alter table students8
+modify sid varchar2(20);
+
+desc students8
+
+
+syntax
+alter table tablename
+rename column oldcolumnname to newcolumnname
+students8(rollno:string,sname:string,phno:integer)
+
+alter table students8
+rename column sid to rollno;
+
+desc students8
+
+rename command
+syntax
+rename oldtablename to newtablename
+
+students10(rollno:string,sname:string,phno:integer)
+
+rename students8 to students10;
+
+desc students8;
+desc students10;
+
+truncate
+truncate table tablename
+
+truncate table students10;
+
+courses(cid:string,cname:string,credits:integer)
+
+create table courses
+(
+cid varchar2(10),
+cname varchar2(20),
+credits integer
+);
+
+desc courses
+
+syntax
+drop table tablename
+
+drop table courses;
+
+desc courses;
+
+DML commands
+insert
+
+syntax
+insert into tablename values(value1,value2,....valuen);
+
+students10(rollno:string,sname:string,phno:integer)
+create table students10
+(
+rollno varchar2(20),
+sname varchar2(30),
+phno integer
+);
+
+insert into students10 values('24B11CS411','noor',7254652346);
+insert into students10 values('24B11CS195','bindu',6874122547);
+insert into students10 values('24B11CS215','reshma',8154123147);
+insert into students10 values('24B11CS301','gayathri',9454546578);
+insert into students10(sname,rollno,phno) values('noor','24B11CS411',7254652346);
+
+select
+syntax
+select * from tablename
+
+select * from students10;
+update
+syntax
+update tablename
+set columnname=value
+where condition;
+
+update students10
+set sname='hima bindhu'
+where rollno='24B11CS195';
+
+select * from students10;
+
+delete
+syntax
+delete from tablename 
+where condition;
+
+delete from students10
+where rollno='24B11CS195';
+
+select * from students10;
+
+
+Branch(branch_name,branch_city) 
+Account(branch_name, acc_no, balance)
+Depositor(Customer_name, acc_no)
+
+create tables branch, account, depositer
+insert 4 rows in branch, account, depositer
+select * from branch;
+select * from account;
+select * from depositer;
+update account table
+select * from account;
+delete account table
+select * from account;
+
+
+
+
+Null/not Null operations
+
+
+--> it doesn't allow null values but it allows duplicate values in a column.
+
+syntax of is null/not null operations
+select colname from tablename
+where colmarks is null/not null
+
+
+Unique constraint
+
+Ensure that each
+
+
+create table Aditya
+(
+Rollno integer,
+Name varchar2(20),
+Marks integer,
+Unique(rollno)
+);
+
+
+
+

@@ -1,0 +1,68 @@
+create table employee
+(
+Empid integer,
+Fname varchar2(20),
+Lname varchar2(20),
+Address varchar2(40),
+Sex varchar2(50),
+salary integer,
+Deptno integer
+);
+
+insert into employee values(1201,'Adarsh','Kumar','Kakinada','F',150000,1);
+insert into employee values(1240,'Mahi','John','Rajahmundry','F',95000,1);
+
+
+
+create table department
+(
+Deptno integer,
+Dname varchar2(20),
+HOD_Empid integer
+);
+
+create table project
+(
+Projno integer,
+Pname varchar2(20),
+Deptno integer
+);
+
+create table works_on
+(
+Empid integer,
+projno integer,
+Hours integer
+);
+
+
+Q)Suppliers(sid: integer, sname: string, address: string)
+Parts(pid: integer,pname: string, color: string)
+Catalog(sid: integer, pid: integer, cost: real)
+
+create table suppliers
+(
+sid integer,
+sname varchar2(20) not null,
+address varchar2(30),
+primary key(sid)
+);
+
+create table parts
+(
+pid integer,
+pname varchar2(20) not null,
+color varchar2(30),
+primary key(pid)
+);
+
+create table catalogs
+(
+sid integer,
+pid integer,
+cost number(7,2),
+primary key(sid,pid),
+foreign key(sid) references suppliers(sid),
+foreign key(pid) references parts(pid));
+
+
